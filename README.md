@@ -1,6 +1,4 @@
-# Canadian Computer Contest
-
-[16 bit software only](16BitSoftwareOnly)
+# Canadian Computing Competition
 
 [AnagramChecker](AnagramChecker)
 
@@ -57,3 +55,7 @@
 [SlotMachines](SlotMachines)
 
 [SumacSequences](SumacSequences)
+
+#Other Projects
+
+[16 bit software only](16BitSoftwareOnly)
