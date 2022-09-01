@@ -20,10 +20,10 @@ such that ![](http://static.dmoj.ca/mathoid/ad3dac10413dfc1e4d32597de9df880410ea
  , such that ![](http://static.dmoj.ca/mathoid/34b6f735666d880c36f037cc249a1975dcb51b36/svg)
   and ![](http://static.dmoj.ca/mathoid/315497b0c946dc2692c5b86358d56d5c42b9f2ea/svg).
   
-##Output Specification
+## Output Specification
 For every line of input except the first, output ```16 BIT S/W ONLY``` if the product is wrong (i.e. ![](http://static.dmoj.ca/mathoid/3113fd6f21ffa9a7154ac108eddf1c6b0d00ce27/svg)), or ``POSSIBLE DOUBLE SIGMA`` if correct.
 
-##Sample Input
+## Sample Input
 ```
 3
 1 1 2
@@ -31,7 +31,7 @@ For every line of input except the first, output ```16 BIT S/W ONLY``` if the pr
 12345678 87654321 1082152022374638
 ```
 
-##Sample Output
+## Sample Output
 ```
 16 BIT S/W ONLY
 16 BIT S/W ONLY

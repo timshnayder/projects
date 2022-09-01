@@ -52,7 +52,7 @@
 
 [Sumac Sequences](SumacSequences)
 
-#Other Projects
+# Other Projects
 
 [16 bit software only](16BitSoftwareOnly)
 
