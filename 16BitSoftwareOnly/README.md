@@ -1,7 +1,7 @@
 # 16 BIT S/W ONLY
 ### https://dmoj.ca/problem/16bitswonly
 
-One day you woke up, finding yourself back in 1992. It would seem that the gypsy wife of the wizened old monk whose voodoo shop you smash up every day after school has cast a spell on you.
+
 
 Early in the production process of the 80386, Intel discovered a fatal bug in the processor, which they of course fixed. The bug involved errors when performing 32-bit multiplication. But by the time they fixed the issue, a number of processors were already produced, and they decided that it would be a shame to throw them all out. It was decided that these processors would be sold at a reduced price with the tag 16 BIT S/W ONLY (16 bit software only). Conversely, the newer processors which don't have the bug instead have two sigmas (ΣΣ) stamped on. We will call them DOUBLE SIGMA processors.
 

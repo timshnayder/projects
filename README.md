@@ -1,61 +1,63 @@
 # Canadian Computing Competition
 
-[AnagramChecker](AnagramChecker)
+[Anagram Checker](AnagramChecker)
 
-[ArrangingBooks](ArrangingBooks)
+[Arranging Books](ArrangingBooks)
 
 [Art](Art)
 
-[CellPhoneMessaging](CellPhoneMessaging)
+[Cell Phone Messaging](CellPhoneMessaging)
 
-[CrossSpiral](CrossSpiral)
+[Cross Spiral](CrossSpiral)
 
-[CupcakeParty](CupcakeParty)
+[Cupcake Party](CupcakeParty)
 
-[CyclicShifts](CyclicShifts)
+[Cyclic Shifts](CyclicShifts)
 
-[CyclicShiftsHard](CyclicShiftsHard)
+[Cyclic Shifts Hard](CyclicShiftsHard)
 
 [Delagate](Delagate)
 
-[ExactlyElectrical](ExactlyElectrical)
+[English Or French?](EnglishOrFrench)
 
-[FergusonballRatings](FergusonballRatings)
+[Exactly Electrical](ExactlyElectrical)
 
-[From1987To2013](From1987To2013)
+[Fergusonball Ratings](FergusonballRatings)
 
-[GCF](GCF)
+[From 1987 To 2013](From1987To2013)
 
-[GoodTimes](GoodTimes)
+[Good Times](GoodTimes)
 
-[HarpTuning](HarpTuning)
+[Harp Tuning](HarpTuning)
 
-[HiddenPalindrome](HiddenPalindrome)
+[Hidden Palindrome](HiddenPalindrome)
 
-[KnightHop](KnightHop)
+[Knight Hop](KnightHop)
 
-[LCM](LCM)
+[Mod Inverse](ModInverse)
 
-[ModInverse](ModInverse)
+[Quadrant Selection](QuadrantSelection)
 
-[PrimeFactorization](PrimeFactorization)
+[RSA Numbers](RSANumbers)
 
-[QuadrantSelection](QuadrantSelection)
+[Secret Instructions](SecretInstructions)
 
-[RSANumbers](RSANumbers)
+[Shifty Sum](ShiftySum)
 
-[SecretInstructions](SecretInstructions)
+[Simple Encryption](SimpleEncryption)
 
-[ShiftySum](ShiftySum)
+[Simplify Fraction](SimplifyFraction)
 
-[SimpleEncryption](SimpleEncryption)
+[Slot Machines](SlotMachines)
 
-[SimplifyFraction](SimplifyFraction)
-
-[SlotMachines](SlotMachines)
-
-[SumacSequences](SumacSequences)
+[Sumac Sequences](SumacSequences)
 
 #Other Projects
 
 [16 bit software only](16BitSoftwareOnly)
+
+[Greatest Common Factor](GCF)
+
+[Least Common Multiple](LCM)
+
+[Prime Factorization](PrimeFactorization)
