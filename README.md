@@ -46,8 +46,6 @@
 
 [Simple Encryption](SimpleEncryption)
 
-[Simplify Fraction](SimplifyFraction)
-
 [Slot Machines](SlotMachines)
 
 [Sumac Sequences](SumacSequences)
@@ -61,3 +59,5 @@
 [Least Common Multiple](LCM)
 
 [Prime Factorization](PrimeFactorization)
+
+[Simplify Fraction](SimplifyFraction)
