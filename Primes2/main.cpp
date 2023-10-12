@@ -1,52 +1,67 @@
 #include <iostream>
 #include <vector>
-#include <math.h>
+#include <cmath>
+#include <cstring>
+#include <memory>
+typedef unsigned long long ull;
 
 using namespace std;
 
-void sieve(int min, int max, vector<int>& primes){
+void sieve(ull min, ull max, vector<ull>& primes){
     vector<bool> isPrime(max+1, true);
-    for(int i = 2; i*i < max; i++){
-        if(isPrime[i] == true){
-            for(int j = i*2; j < max; j+=i){
+    for(ull i = 2; i*i < max; i++){
+        if(isPrime[i]){
+            for(ull j = i*2; j < max; j+=i){
                 isPrime[j] = false;
             }
         }
     }
-    for(int i = 2; i < max; i++){
+    for(ull i = 2; i < max; i++){
         if(isPrime[i] && i != 1){
-            cout << i << endl;
             primes.push_back(i);
+            if(i > min){
+                cout << i << endl;
+            }
+
         }
     }
 }
 
-void segmentedPrimes(int min, int max){
-    int maxN = sqrt(max)+1;
-    vector<int> primes;
-    sieve(min, maxN, primes);
-    int limit = max;
+void segmentedPrimes(ull minPrime, ull maxPrime){
+    //Find all multiples
+    //maxN is the number that we find up to when doing our simple sieve
+    //primes will have all primes/multiples found in the simple sieve
+    ull maxN = sqrt(maxPrime)+1;
+    vector<ull> primes;
+    sieve(minPrime, maxN, primes);
 
-    bool isPrime[maxN];
-    memset(isPrime, true, sizeof(isPrime));
-
-    for(int i = maxN; i < max; i++){
-        for(int j = 0; j < primes.size(); j++){
-            if(i%primes[j]==0){
-                isPrime[i-maxN] = false;
-                continue;
-            }
+    unique_ptr<bool> isPrimePtr(new bool[maxPrime-minPrime+1]);
+    bool *isPrime = isPrimePtr.get();
+    memset(isPrime, true, sizeof(bool)*(maxPrime-minPrime+1));
+    for(ull i = 0; i < primes.size(); i++){
+        ull lowestMult = (minPrime/primes[i])*primes[i];
+        if(lowestMult < minPrime){
+            lowestMult+=primes[i];
         }
-        if(isPrime[i-maxN]){
-            cout << i << endl;
+        for(ull j = lowestMult; j <= maxPrime; j+=primes[i]){
+            isPrime[j-minPrime] = false;
         }
     }
+    for(ull j = minPrime; j <= maxPrime; j++){
+        if(isPrime[j-minPrime] && j != 1){
+            cout << j << endl;
+        }
+    }
+
 }
 
 int main() {
-    int min, max;
+    ull min, max;
     cin >> min >> max;
     segmentedPrimes(min, max);
 
     return 0;
 }
+
+
+

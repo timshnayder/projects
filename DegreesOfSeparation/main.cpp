@@ -1,21 +1,23 @@
 #include <iostream>
-#include <vector>
 #include <queue>
+#include <set>
 
 using namespace std;
 
-vector<vector<int>> friends = {{}, {6}, {6}, {4,5,6,15}, {3,5,6}, {3,4,6}, {1,2,3,4,5,7}, {6,8}, {7,9}, {8,10,12}, {9,11}, {10,12}, {9,11,13}, {12,14,15}, {13}, {3,13}, {17,18}, {16,18}, {16,17}};
+set<int> friends[50] = {{}, {6}, {6}, {4,5,6,15}, {3,5,6}, {3,4,6}, {1,2,3,4,5,7}, {6,8}, {7,9}, {8,10,12}, {9,11}, {10,12}, {9,11,13}, {12,14,15}, {13}, {3,13}, {17,18}, {16,18}, {16,17}};
 
 int bfs(int start, int end){
-    int shortestDistance[19] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    int shortestDistance[50];
+    for(int & i : shortestDistance){
+        i = -1;
+    }
     shortestDistance[start] = 0;
     queue<int> q;
     q.push(start);
     while(!q.empty()){
         int current = q.front();
         q.pop();
-        for(int i = 0; i < friends[current].size(); i++){
-            int fr = friends[current][i];
+        for(auto fr: friends[current]){
             if(shortestDistance[fr]!=-1){
                 continue;
             }
@@ -31,7 +33,10 @@ int bfs(int start, int end){
 }
 
 int friendsOfFriends(int start){
-    int shortestDistance[19] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    int shortestDistance[50];
+    for(int & i : shortestDistance){
+        i = -1;
+    }
     int total = 0;
     shortestDistance[start] = 0;
     queue<int> q;
@@ -39,8 +44,7 @@ int friendsOfFriends(int start){
     while(!q.empty()){
         int current = q.front();
         q.pop();
-        for(unsigned int i = 0; i < friends[current].size(); i++){
-            int fr = friends[current][i];
+        for(auto fr: friends[current]){
             if(shortestDistance[fr]!=-1){
                 continue;
             }
@@ -49,8 +53,8 @@ int friendsOfFriends(int start){
         }
 
     }
-    for(int i = 0; i < 19; i++){
-        if(shortestDistance[i] == 2){
+    for(int i : shortestDistance){
+        if(i == 2){
             total++;
         }
     }
@@ -65,20 +69,12 @@ int main() {
     while(command!='q'){
         if(command == 'i'){
             cin >> x >> y;
-            friends[x].push_back(y);
-            friends[y].push_back(x);
+            friends[x].insert(y);
+            friends[y].insert(x);
         } else if(command == 'd'){
             cin >> x >> y;
-            for(int i = 0; i < friends[x].size(); i++){
-                if(friends[x][i] == y){
-                    friends[x].erase(friends[x].begin()+i);
-                }
-            }
-            for(int i = 0; i < friends[y].size(); i++){
-                if(friends[y][i] == x){
-                    friends[y].erase(friends[y].begin()+i);
-                }
-            }
+            friends[x].erase(y);
+            friends[y].erase(x);
         } else if(command == 'n'){
             cin >> x;
             cout << friends[x].size() << endl;

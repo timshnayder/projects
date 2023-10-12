@@ -1,20 +1,27 @@
 #include <iostream>
+#include <set>
 using namespace std;
 
 int main() {
-    int numGates;
-    cin >> numGates;
-    int numPlanes;
-    cin >> numPlanes;
-    int planeGates[numPlanes];
-
-    int planeGate;
-    for(int i = 0; i < numPlanes; i++){
-        cin >> planeGate;
-        planeGates[i] = planeGate;
+    int numGates, numPlanes, plane;
+    int total = 0;
+    cin >> numGates >> numPlanes;
+    set<int> gates;
+    for(int i = 1; i < numGates+1; i++){
+        gates.insert(-i);
     }
-    int n = sizeof(planeGates)/ sizeof(planeGates[0]);
-    sort(planeGates, planeGates+n);
-    
+    for(int i = 0; i < numPlanes; i++){
+        cin >> plane;
+        auto found = gates.lower_bound(-plane);
+        if(found != gates.end()){
+            total++;
+            gates.erase(found);
+        } else{
+            break;
+        }
+    }
+
+    cout << total << endl;
     return 0;
 }
+
