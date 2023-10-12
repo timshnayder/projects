@@ -3,24 +3,20 @@
 #define MAXNODES 100001
 using namespace std;
 
-class Node{
-public:
-    int weight;
-};
 
-class Graph{
+class Tree{
+private:
+    vector<int> adjacency[MAXNODES];
 public:
-    vector<Node> adjacency[MAXNODES];
-    const vector<Node>& getNeighbours(int node)const{
+    const vector<int>& getNeighbours(int node)const{
         return adjacency[node];
     }
-    void addEdge(int node, int neighbour, int weight){
-        Node n{weight, neighbour};
-        adjacency[node].push_back(n);
+    void addEdge(int node, int neighbour){
+        adjacency[node].push_back(neighbour);
     }
 };
 
-int pathMin(const Graph& graph, Node curNode, Node end, int shortestDist[]){
+int pathMin(const Tree& tree, int start, int end){
 
 }
 
@@ -28,31 +24,53 @@ int pathMax(){
 
 }
 
-int pathSum(){
-
+int pathSum(const Tree& tree, int cur, int end, int sum, const int vertexWeights[], int shortestDist[]){
+    for(auto neighbour: tree.getNeighbours(cur)){
+        shortestDist[neighbour] = shortestDist[cur]+ vertexWeights[neighbour];
+        if(neighbour == end){
+            return sum+vertexWeights[neighbour];
+        }
+        int res = pathSum(tree, neighbour, end, sum+=vertexWeights[neighbour], vertexWeights, shortestDist);
+        if(res!=0){
+            return res;
+        }else{
+            continue;
+        }
+    }
+    return 0;
 }
 
 int main() {
-    int nVertices,  nQueries, query, vertexWeight;
-    Graph graph;
+    Tree tree;
 
+    int nVertices;
+    cin >> nVertices;
+
+    int vertexWeights[nVertices];
+    int vertexWeight;
     for(int i = 0; i < nVertices; i++){
         cin >> vertexWeight;
-        Node n{vertexWeight};
-        graph.adjacency[i] = n;
+        vertexWeights[i] = vertexWeight;
     }
+
     int x, y;
     for(int i = 0; i < nVertices-1; i++){
         cin >> x >> y;
-        graph.addEdge(x,y)
+        tree.addEdge(x,y);
     }
+
     int root;
     cin >> root;
+
     int shortestDist[nVertices+1];
+    int nQueries;
+    cin >> nQueries;
+    int query;
     for(int i = 0; i < nQueries; i++){
         cin >> query;
         switch(query){
             case 0:
+                cin >> root;
                 continue;
             case 1:
                 continue;
@@ -60,7 +78,7 @@ int main() {
                 continue;
             case 3:
                 cin >> x >> y;
-                pathMin(graph);
+                cout << pathMin(tree, x, y) << endl;
                 continue;
             case 4:
                 cin >> x >> y;
@@ -68,7 +86,9 @@ int main() {
                 continue;
             case 5:
                 cin >> x >> y;
-                pathSum();
+                shortestDist[x] = 0;
+                cout << pathSum(tree, x, y, 0, vertexWeights, shortestDist) << endl;
+                cout << shortestDist[y];
                 continue;
             case 6:
                 continue;
