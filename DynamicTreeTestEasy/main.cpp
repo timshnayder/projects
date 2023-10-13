@@ -3,34 +3,37 @@
 #define MAXNODES 100001
 using namespace std;
 
+class Node{
+    int weight;
+    vector<int> children;
+};
 
 class Tree{
 private:
-    vector<int> adjacency[MAXNODES];
+    vector<int> adjacency[10000];
 public:
-    const vector<int>& getNeighbours(int node)const{
+    vector<int> getNeighbours(int node){
         return adjacency[node];
     }
-    void addEdge(int node, int neighbour){
-        adjacency[node].push_back(neighbour);
+    void addEdge(int start, int end){
+        adjacency[start].push_back(end);
     }
 };
 
 int pathMin(const Tree& tree, int start, int end){
-
+    return 0;
 }
 
 int pathMax(){
-
+    return 0;
 }
 
-int pathSum(const Tree& tree, int cur, int end, int sum, const int vertexWeights[], int shortestDist[]){
+int pathSum(Tree tree, int cur, int end, int sum, const int vertexWeights[]){
     for(auto neighbour: tree.getNeighbours(cur)){
-        shortestDist[neighbour] = shortestDist[cur]+ vertexWeights[neighbour];
         if(neighbour == end){
             return sum+vertexWeights[neighbour];
         }
-        int res = pathSum(tree, neighbour, end, sum+=vertexWeights[neighbour], vertexWeights, shortestDist);
+        int res = pathSum(tree, neighbour, end, sum+vertexWeights[neighbour], vertexWeights);
         if(res!=0){
             return res;
         }else{
@@ -40,15 +43,23 @@ int pathSum(const Tree& tree, int cur, int end, int sum, const int vertexWeights
     return 0;
 }
 
+int LCA(Tree tree, int x, int y){
+    if(x == y){
+        return x;
+    }
+}
+
 int main() {
     Tree tree;
 
     int nVertices;
     cin >> nVertices;
+    int nQueries;
+    cin >> nQueries;
 
-    int vertexWeights[nVertices];
+    int vertexWeights[nVertices+1];
     int vertexWeight;
-    for(int i = 0; i < nVertices; i++){
+    for(int i = 1; i < nVertices+1; i++){
         cin >> vertexWeight;
         vertexWeights[i] = vertexWeight;
     }
@@ -62,9 +73,6 @@ int main() {
     int root;
     cin >> root;
 
-    int shortestDist[nVertices+1];
-    int nQueries;
-    cin >> nQueries;
     int query;
     for(int i = 0; i < nQueries; i++){
         cin >> query;
@@ -86,9 +94,7 @@ int main() {
                 continue;
             case 5:
                 cin >> x >> y;
-                shortestDist[x] = 0;
-                cout << pathSum(tree, x, y, 0, vertexWeights, shortestDist) << endl;
-                cout << shortestDist[y];
+                cout << pathSum(tree, x, y, 0, vertexWeights) << endl;
                 continue;
             case 6:
                 continue;
