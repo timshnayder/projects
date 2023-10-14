@@ -28,6 +28,7 @@ public:
     ~Tree(){
         delete[] nodes;
     }
+
     void addNode(int nodeIndex, int weight){
         Node& n = nodes[nodeIndex-1];
         n.weight = weight;
@@ -39,6 +40,36 @@ public:
         firstNode.neighbours.push_back(&secondNode);
         secondNode.neighbours.push_back(&firstNode);
     }
+
+    void changeParent(int nodeIndex, int newParentIndex){
+        //Remove this child from old parent and remove parent from child
+        Node* node = &nodes[nodeIndex-1];
+        if(node->parent!= nullptr){
+            vector<Node*> &parentNeighbours = node->parent->neighbours;
+            for(auto neighbour = parentNeighbours.begin(); neighbour != parentNeighbours.end(); neighbour++){
+                if(*neighbour==node){
+                    parentNeighbours.erase(neighbour);
+                    break;
+                }
+            }
+            for(auto neighbour = node->neighbours.begin(); neighbour != node->neighbours.end(); neighbour++){
+                if(*neighbour==node->parent){
+                    node->neighbours.erase(neighbour);
+                    break;
+                }
+            }
+        }
+
+        //Connect node and new parent
+        addEdge(nodeIndex, newParentIndex);
+
+
+        //Change nodes parent to new parent
+        Node* newParent = &nodes[newParentIndex-1];
+        node->parent = newParent;
+
+    }
+
     void setRoot(int rootIndex);
     vector<Node*> findPath(int start, int end);
     Node* LCA(int start, int end);
@@ -106,9 +137,9 @@ Node* Tree::LCA(int start, int end){
         }
     }
     if(firstPath.size() > secondPath.size()){
-        return *(firstPath.rbegin()+(secondPath.size()-2));
+        return *(firstPath.rbegin()+(secondPath.size()-1));
     }else{
-        return *(secondPath.rbegin()+(firstPath.size()-2));
+        return *(secondPath.rbegin()+(firstPath.size()-1));
     }
 }
 
@@ -184,6 +215,7 @@ int main() {
             cout << sum << endl;
         } else if(query == 6){
             cin >> x >> y;
+            tree.changeParent(x,y);
 
         } else if(query == 7){
             cin >> x >> y;
