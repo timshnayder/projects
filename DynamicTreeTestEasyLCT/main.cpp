@@ -20,44 +20,70 @@ public:
 
 
 
-    void cut(int nodeOne, int nodeTwo){
 
-    }
 
     int find_root(int node){
 
 
     }
 
-    void rotateRight(Node* node){
-        Node *nParent = node->parent;
-        Node *nGParent = nParent->parent;
 
-
-
-    }
-
-    void rotateLeft(Node* node){
-        Node *nParent = node->parent;
-        Node *nGParent = nParent->parent;
-    }
-
-    void splay(Node* node){
-        while(node->parent!= nullptr){
-
+    //done
+    void cut(Node* n){
+        access(n);
+        if(n->left != nullptr){
+            n->left->pathParent = n->pathParent;
+            n->left = nullptr;
         }
+        n->pathParent = nullptr;
     }
 
-    void update(Node* node){
-
-    }
-
+    //done
     void link(Node* nodeOne, Node* nodeTwo){
         access(nodeOne);
         access(nodeTwo);
         nodeOne->left = nodeTwo;
         nodeTwo->parent = nodeOne;
     }
+
+    void rotateRight(Node* n){
+        Node *nParent = n->parent;
+        Node *nGParent = nParent->parent;
+        nParent = n->parent, nGParent = nParent->parent;
+        if((nParent->left = n->right)) nParent->left->parent = nParent;
+        n->right = nParent, nParent->parent = n;
+        if((n->parent = nGParent))
+        {   if(nParent == nGParent->left) nGParent->left = n;
+            else nGParent->right = n;
+        }
+        n->pathParent = nParent->pathParent;
+        nParent->pathParent = 0;
+    }
+
+    void rotateLeft(Node* n){
+        Node *nParent = n->parent;
+        Node *nGParent = nParent->parent;
+
+        if(nParent->right = n->left){
+            nParent->right->parent = nParent;
+        }
+        n->left = nParent;
+        nParent->parent = n;
+        if(n->parent = nGParent){
+            if(nParent == nGParent->left){
+                nGParent->left = n;
+            }
+        }
+        n->pathParent = nParent->pathParent;
+        nParent->pathParent = 0;
+    }
+
+    void splay(Node* node){
+        while(node->parent!=nullptr){
+
+        }
+    }
+
 
     Node* access(Node* node){
         splay(node);
