@@ -1,0 +1,3 @@
+/Users/timothyshnayder/CLionProjects/projects/NailedIt/cmake-build-debug/CMakeFiles/NailedIt.dir
+/Users/timothyshnayder/CLionProjects/projects/NailedIt/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/timothyshnayder/CLionProjects/projects/NailedIt/cmake-build-debug/CMakeFiles/rebuild_cache.dir
